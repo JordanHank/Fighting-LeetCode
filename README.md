@@ -5,3 +5,7 @@
 ## 简单-Easy
 
 + [两数之和](https://github.com/JordanHank/Fighting-LeetCode/blob/master/docs/easy/numsSum.md) 
+
+## 中等-Medium
+
++ [两数相加](https://github.com/JordanHank/Fighting-LeetCode/blob/master/docs/medium/numsAdd.md)
