@@ -1,7 +1,5 @@
 package medium;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -28,13 +26,37 @@ public class NumsAdd {
         return string2Node(sum);
     }
 
+    public static ListNode addTwoNumbersOffical(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
     public static String numsAdd(String num1Str, String num2Str) {
         String min = num1Str.length() > num2Str.length() ? num2Str : num1Str;
         String max = num1Str.length() > num2Str.length() ? num1Str : num2Str;
         Stack<Integer> nums = new Stack<>();
         int forward = 0;
+        int minTail = min.length() - 1;
         for (int i = max.length() - 1; i >= 0; i--) {
-            int current_min = Integer.valueOf(String.valueOf(min.charAt(i)));
+            int current_min = 0;
+            if (minTail > -1) {
+                current_min = Integer.valueOf(String.valueOf(min.charAt(minTail)));
+            }
             int current_max = Integer.valueOf(String.valueOf(max.charAt(i)));
             int sum = current_min + current_max;
             if (forward != 0) {
@@ -47,6 +69,10 @@ public class NumsAdd {
                 forward = 0;
                 nums.push(Integer.valueOf(String.valueOf(String.valueOf(sum).charAt(0))));
             }
+            minTail--;
+        }
+        if (forward != 0) {
+            nums.push(forward);
         }
         String result = "";
         while(!nums.isEmpty()) {
@@ -58,7 +84,7 @@ public class NumsAdd {
     public static String node2String(ListNode node) {
         String num1Str = "";
         if (null != node.next) {
-            num1Str += node2Long(node.next);
+            num1Str += node2String(node.next);
         }
         return num1Str += node.val;
     }

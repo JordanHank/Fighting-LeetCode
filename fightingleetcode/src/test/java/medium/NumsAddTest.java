@@ -1,6 +1,7 @@
 package medium;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -60,21 +61,27 @@ public class NumsAddTest {
 
         String result = "6,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1";
         ListNode node3 = NumsAdd.string2Node(result.replaceAll(",", "").trim());
-        NumsAdd.node2String(node3);
+        System.out.println(NumsAdd.node2String(node3));;
     }
 
     @Test
     public void testSum() {
-//        ListNode node1 = NumsAdd.string2Node("342");
-//        ListNode node2 = NumsAdd.string2Node("465");
-//        ListNode node3 = NumsAdd.string2Node("807");
+        ListNode node1 = NumsAdd.string2Node("342");
+        ListNode node2 = NumsAdd.string2Node("465");
+        ListNode node3 = NumsAdd.string2Node("807");
+        assertEquals(node3, NumsAdd.addTwoNumbersOffical(node1, node2));
+
+//        ListNode node1 = new ListNode(9);
+//        String num = "9999999991";
+//        ListNode node2 = NumsAdd.string2Node(num);
+//        ListNode node3 = NumsAdd.string2Node("10000000000");
 
         String num = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1";
-        ListNode node1 = NumsAdd.string2Node(num.replaceAll(",", "").trim());
-        ListNode node2 = NumsAdd.string2Node("465");
-        String result = "6,6,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1";
-        ListNode node3 = NumsAdd.string2Node(result.replaceAll(",", "").trim());
-        assertEquals(node3, NumsAdd.addTwoNumbers(node2, node1));
+        ListNode node_1 = NumsAdd.string2Node(num.replaceAll(",", "").trim());
+        ListNode node_2 = NumsAdd.string2Node("465");
+        String result = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,6,6";
+        ListNode node_3 = NumsAdd.string2Node(result.replaceAll(",", "").trim());
+        assertEquals(node_3, NumsAdd.addTwoNumbers(node_2, node_1));
     }
 
     @Test
